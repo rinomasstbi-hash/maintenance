@@ -17,12 +17,9 @@ const App: React.FC = () => {
           Sistem Sedang Dalam Perbaikan
         </h1>
         <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-          Mohon maaf atas ketidaknyamanannya. Kami sedang bekerja keras untuk meningkatkan layanan kami dan akan segera kembali online.
+          Mohon maaf atas ketidaknyamanannya. Kami sedang bekerja keras untuk meningkatkan layanan kami.
         </p>
-        <p className="text-gray-600 dark:text-gray-300 mt-4 text-lg leading-relaxed">
-          Terima kasih atas pengertian dan kesabaran Anda.
-        </p>
-        
+
         <CountdownTimer targetDate={targetDate} />
 
         <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
