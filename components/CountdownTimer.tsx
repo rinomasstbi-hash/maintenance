@@ -29,7 +29,6 @@ const calculateTimeLeft = (targetDate: string): TimeLeft | null => {
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(calculateTimeLeft(targetDate));
 
-  // FIX: Replaced setTimeout with setInterval for a more efficient timer that cleans up after completion.
   useEffect(() => {
     const timerId = setInterval(() => {
       const newTimeLeft = calculateTimeLeft(targetDate);
@@ -37,13 +36,14 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
 
       if (!newTimeLeft) {
         clearInterval(timerId);
+        // Redirect to the new site when the timer ends
+        window.location.href = 'https://mtsn4jbg.netlify.app';
       }
     }, 1000);
 
     return () => clearInterval(timerId);
   }, [targetDate]);
 
-  // FIX: Changed JSX.Element to React.ReactElement to resolve "Cannot find namespace 'JSX'" error.
   const timerComponents: React.ReactElement[] = [];
 
   if (timeLeft) {
@@ -77,7 +77,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
         </>
       ) : (
         <p className="text-green-600 dark:text-green-400 mt-6 text-lg font-semibold">
-          Sistem seharusnya sudah kembali online.
+          Mengarahkan ke situs baru...
         </p>
       )}
     </div>

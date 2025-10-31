@@ -4,8 +4,8 @@ import { CountdownTimer } from './components/CountdownTimer';
 
 const App: React.FC = () => {
   // WIB (Waktu Indonesia Barat) is UTC+7.
-  // Target: Sabtu 1 Nopember 2025 Pukul 06.00 WIB
-  const targetDate = '2025-11-01T06:00:00+07:00';
+  // Target: Jumat 31 Oktober 2025 Pukul 16.06 WIB
+  const targetDate = '2025-10-31T16:06:00+07:00';
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4">
