@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 
 interface CountdownTimerProps {
@@ -32,12 +33,18 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
   useEffect(() => {
     const timerId = setInterval(() => {
       const newTimeLeft = calculateTimeLeft(targetDate);
-      setTimeLeft(newTimeLeft);
 
-      if (!newTimeLeft) {
+      if (newTimeLeft) {
+        setTimeLeft(newTimeLeft);
+      } else {
+        // Timer has finished
+        setTimeLeft(null);
         clearInterval(timerId);
-        // Redirect to the new site when the timer ends
-        window.location.href = 'https://mtsn4jbg.netlify.app';
+
+        // Show notification for 10 seconds before redirecting
+        setTimeout(() => {
+          window.location.href = 'https://mtsn4jbg.netlify.app';
+        }, 10000);
       }
     }, 1000);
 
@@ -66,7 +73,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
 
   return (
     <div className="mt-8">
-      {timerComponents.length ? (
+      {timerComponents.length > 0 ? (
         <>
             <p className="text-gray-500 dark:text-gray-400 mb-4 text-base font-semibold">
                 Sistem akan kembali online dalam:
@@ -76,8 +83,8 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
             </div>
         </>
       ) : (
-        <p className="text-green-600 dark:text-green-400 mt-6 text-lg font-semibold">
-          Mengarahkan ke situs baru...
+        <p className="text-green-600 dark:text-green-400 mt-6 text-lg font-semibold animate-pulse">
+          Waktu habis! Mengalihkan Anda ke situs baru kami...
         </p>
       )}
     </div>
